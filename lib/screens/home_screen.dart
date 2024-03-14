@@ -30,9 +30,20 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.all(12.0),
               child: ExpansionTile(
                 leading: const Icon(Icons.list_outlined),
-                title: Text(
-                  controller.tasks[index].taskName,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                title: Row(
+                  children: [
+                    Text(
+                      controller.tasks[index].taskName,
+                      style: const TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    controller.tasks[index].isCompleted
+                        ? const Icon(Icons.check)
+                        : const SizedBox.shrink()
+                  ],
                 ),
                 children: [
                   Container(
@@ -92,6 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         setState(() {
                           controller.addNewTask();
                         });
+                        Navigator.of(ctx).pop();
                       },
                       child: const Text("Add"),
                     ),
