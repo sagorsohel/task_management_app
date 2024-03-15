@@ -17,6 +17,6 @@ class HomeScreenController {
   }
 
   void updateComplete(int index) {
-    tasks[index].isCompleted = true;
+    tasks[index].isCompleted = !tasks[index].isCompleted;
   }
 }
