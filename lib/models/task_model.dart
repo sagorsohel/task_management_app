@@ -1,7 +1,7 @@
 class TaskModel {
-  final String taskName;
-  final String taskDetails;
-  final bool isCompleted;
+  String taskName;
+  String taskDetails;
+  bool isCompleted;
   TaskModel(
       {required this.taskName,
       required this.taskDetails,

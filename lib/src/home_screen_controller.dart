@@ -15,4 +15,8 @@ class HomeScreenController {
     taskTitleController.clear();
     taskDetailsController.clear();
   }
+
+  void updateComplete(int index) {
+    tasks[index].isCompleted = true;
+  }
 }

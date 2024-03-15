@@ -26,38 +26,48 @@ class _HomeScreenState extends State<HomeScreen> {
       body: ListView.builder(
           itemCount: controller.tasks.length,
           itemBuilder: (data, index) {
-            return Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: ExpansionTile(
-                leading: const Icon(Icons.list_outlined),
-                title: Row(
+            return InkWell(
+              onLongPress: () {
+                setState(() {
+                  controller.updateComplete(index);
+                });
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: ExpansionTile(
+                  leading: const Icon(Icons.list_outlined),
+                  title: Row(
+                    children: [
+                      Text(
+                        controller.tasks[index].taskName,
+                        style: const TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      controller.tasks[index].isCompleted
+                          ? const Icon(
+                              Icons.check,
+                              color: Colors.green,
+                            )
+                          : const SizedBox.shrink()
+                    ],
+                  ),
                   children: [
-                    Text(
-                      controller.tasks[index].taskName,
-                      style: const TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    controller.tasks[index].isCompleted
-                        ? const Icon(Icons.check)
-                        : const SizedBox.shrink()
+                    Container(
+                      padding: const EdgeInsets.all(13),
+                      child: Row(
+                        children: [
+                          Text(controller.tasks[index].taskDetails,
+                              style: const TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w400),
+                              textAlign: TextAlign.start),
+                        ],
+                      ),
+                    )
                   ],
                 ),
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(13),
-                    child: Row(
-                      children: [
-                        Text(controller.tasks[index].taskDetails,
-                            style: const TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w400),
-                            textAlign: TextAlign.start),
-                      ],
-                    ),
-                  )
-                ],
               ),
             );
           }),
